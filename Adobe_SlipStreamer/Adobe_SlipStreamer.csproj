@@ -119,6 +119,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\AcroRdrDC.mst" />
     <None Include="Resources\AcroRdrDC1500720033_de_DE.msi" />
   </ItemGroup>
   <ItemGroup>

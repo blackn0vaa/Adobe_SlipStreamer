@@ -14,7 +14,7 @@ namespace Adobe_SlipStreamer
     public partial class frmhauptprogramm : Form
     {
         //Public Variablen
-        public string PfadMSI = @"C:\temp\AcroRdrDC1500720033_de_DE.msi";
+        public string PfadMSI = @"C:\temp\AcroRdrDC.msi";
         public string PfadADC = @"C:\adc\";
 
         public frmhauptprogramm()
@@ -24,31 +24,25 @@ namespace Adobe_SlipStreamer
 
         private void frmhauptprogramm_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void cmdSlipstream_Click(object sender, EventArgs e)
-        {
-            //Ist die MSI File vorhanden?
             DateiVorhanden();
 
-
-            try
-            {
-                System.IO.Directory.Delete(PfadADC, true);
-            }
-            catch { }          
         }
 
-        private void cmdInstall_Click(object sender, EventArgs e)
+        private void cmdStep_1_Click(object sender, EventArgs e)
         {
-            BasisversionInstallieren();
+            DoStep_1();
         }
 
-        private void cmdPaketBauen_Click(object sender, EventArgs e)
+        private void cmdStep_2_Click(object sender, EventArgs e)
         {
-            SlipStream();
+            DoStep_2();
         }
+
+        private void cmdStep_3_Click(object sender, EventArgs e)
+        {
+            DoStep_3();
+        }
+
 
         private void DateiVorhanden()
         {
@@ -59,6 +53,7 @@ namespace Adobe_SlipStreamer
                 {
                     System.IO.File.Delete(PfadMSI);
                     File.WriteAllBytes(PfadMSI, Properties.Resources.AcroRdrDC1500720033_de_DE);
+                    File.WriteAllBytes(PfadADC + "AcroRdrDC.mst", Properties.Resources.AcroRdrDC);
 
                 }
                 catch { }
@@ -69,6 +64,7 @@ namespace Adobe_SlipStreamer
                 {
                     System.IO.File.Delete(PfadMSI);
                     File.WriteAllBytes(PfadMSI, Properties.Resources.AcroRdrDC1500720033_de_DE);
+                    File.WriteAllBytes(PfadADC + "AcroRdrDC.mst", Properties.Resources.AcroRdrDC);
                 }
                 catch { }
 
@@ -78,24 +74,42 @@ namespace Adobe_SlipStreamer
         }
 
 
-
-        public void BasisversionInstallieren()
+        public void DoStep_1()
         {
             //msiexec /a AcroRdrDC1500720033_de_DE.msi TARGETDIR="C:\adc" /qn
             //string installcommand = "msiexec /a c:/temp/AcroRdrDC1500720033_de_DE.msi TARGETDIR=" + "c:/adc/" + "/qn";
 
-            //DoCmd.ShellExecute("msiexec ", "/a c:/temp/AcroRdrDC1500720033_de_DE.msi");
+            //DoCmd.ShellExecute("msiexec ", "/a c:/temp/AcroRdrDC1500720033_de_DE.msi");äö
 
-            System.Diagnostics.Process.Start("msiexec", "/a c:\\temp\\AcroRdrDC1500720033_de_DE.msi TARGETDIR=C:\\adc /qn");
+            System.Diagnostics.Process.Start("msiexec", "/a c:\\temp\\AcroRdrDC.msi TARGETDIR=C:\\adc /qn");
 
         }
 
-        public void SlipStream()
+        public void DoStep_2()
         {
             //msiexec /a "C:\adc\AcroRdrDC1500720033_de_DE.msi" /p C:\Users\h.barthelmes\Desktop\AcroRdrDCUpd2100120150.msp
-            System.Diagnostics.Process.Start("msiexec", "/a C:\\adc\\AcroRdrDC1500720033_de_DE.msi /p C:\\temp\\AcroRdrDCUpd2100520060.msp");
+            System.Diagnostics.Process.Start("msiexec", "/a C:\\adc\\AcroRdrDC.msi /p " + lstUpdateFile.Items[0].ToString() + " /qn");
+
+            //MessageBox.Show(lstUpdateFile.SelectedItem.ToString());
         }
 
+        public void DoStep_3()
+        {
+            //start /w msiexec /i "%wd%\deploy\%version%\AcroRead.msi" /qn TRANSFORMS="%wd%\deploy\%version%\AcroRead.mst"
+            //System.Diagnostics.Process.Start
+            //Console.WriteLine("start /w msiexec /i \"C:\\adc\\AcroRdrDC.msi\" /qn TRANSFORMS=\"C:\\adc\\AcroRdrDC.mst\"");
+        }
 
+        private void lstUpdateFile_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            foreach (string file in files)
+                lstUpdateFile.Items.Add(file);
+        }
+
+        private void lstUpdateFile_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
+        }
     }
 }

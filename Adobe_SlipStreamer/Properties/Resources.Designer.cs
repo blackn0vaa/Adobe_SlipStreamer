@@ -63,6 +63,16 @@ namespace Adobe_SlipStreamer.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Byte[].
         /// </summary>
+        internal static byte[] AcroRdrDC {
+            get {
+                object obj = ResourceManager.GetObject("AcroRdrDC", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Byte[].
+        /// </summary>
         internal static byte[] AcroRdrDC1500720033_de_DE {
             get {
                 object obj = ResourceManager.GetObject("AcroRdrDC1500720033_de_DE", resourceCulture);

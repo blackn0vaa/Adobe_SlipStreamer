@@ -29,49 +29,64 @@ namespace Adobe_SlipStreamer
         /// </summary>
         private void InitializeComponent()
         {
-            this.cmdSlipstream = new System.Windows.Forms.Button();
-            this.cmdInstall = new System.Windows.Forms.Button();
-            this.cmdPaketBauen = new System.Windows.Forms.Button();
+            this.cmdStep_1 = new System.Windows.Forms.Button();
+            this.cmdStep_2 = new System.Windows.Forms.Button();
+            this.cmdStep_3 = new System.Windows.Forms.Button();
+            this.lstUpdateFile = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
-            // cmdSlipstream
+            // cmdStep_1
             // 
-            this.cmdSlipstream.Location = new System.Drawing.Point(12, 30);
-            this.cmdSlipstream.Name = "cmdSlipstream";
-            this.cmdSlipstream.Size = new System.Drawing.Size(223, 80);
-            this.cmdSlipstream.TabIndex = 0;
-            this.cmdSlipstream.Text = "Slipstream";
-            this.cmdSlipstream.UseVisualStyleBackColor = true;
-            this.cmdSlipstream.Click += new System.EventHandler(this.cmdSlipstream_Click);
+            this.cmdStep_1.Location = new System.Drawing.Point(12, 30);
+            this.cmdStep_1.Name = "cmdStep_1";
+            this.cmdStep_1.Size = new System.Drawing.Size(223, 80);
+            this.cmdStep_1.TabIndex = 0;
+            this.cmdStep_1.Text = "Step 1";
+            this.cmdStep_1.UseVisualStyleBackColor = true;
+            this.cmdStep_1.Click += new System.EventHandler(this.cmdStep_1_Click);
             // 
-            // cmdInstall
+            // cmdStep_2
             // 
-            this.cmdInstall.Location = new System.Drawing.Point(12, 126);
-            this.cmdInstall.Name = "cmdInstall";
-            this.cmdInstall.Size = new System.Drawing.Size(223, 71);
-            this.cmdInstall.TabIndex = 1;
-            this.cmdInstall.Text = "install";
-            this.cmdInstall.UseVisualStyleBackColor = true;
-            this.cmdInstall.Click += new System.EventHandler(this.cmdInstall_Click);
+            this.cmdStep_2.Location = new System.Drawing.Point(12, 126);
+            this.cmdStep_2.Name = "cmdStep_2";
+            this.cmdStep_2.Size = new System.Drawing.Size(223, 71);
+            this.cmdStep_2.TabIndex = 1;
+            this.cmdStep_2.Text = "Step 2";
+            this.cmdStep_2.UseVisualStyleBackColor = true;
+            this.cmdStep_2.Click += new System.EventHandler(this.cmdStep_2_Click);
             // 
-            // cmdPaketBauen
+            // cmdStep_3
             // 
-            this.cmdPaketBauen.Location = new System.Drawing.Point(12, 212);
-            this.cmdPaketBauen.Name = "cmdPaketBauen";
-            this.cmdPaketBauen.Size = new System.Drawing.Size(223, 71);
-            this.cmdPaketBauen.TabIndex = 2;
-            this.cmdPaketBauen.Text = "Bauen";
-            this.cmdPaketBauen.UseVisualStyleBackColor = true;
-            this.cmdPaketBauen.Click += new System.EventHandler(this.cmdPaketBauen_Click);
+            this.cmdStep_3.Enabled = false;
+            this.cmdStep_3.Location = new System.Drawing.Point(12, 212);
+            this.cmdStep_3.Name = "cmdStep_3";
+            this.cmdStep_3.Size = new System.Drawing.Size(223, 71);
+            this.cmdStep_3.TabIndex = 2;
+            this.cmdStep_3.Text = "Step 3";
+            this.cmdStep_3.UseVisualStyleBackColor = true;
+            this.cmdStep_3.Click += new System.EventHandler(this.cmdStep_3_Click);
+            // 
+            // lstUpdateFile
+            // 
+            this.lstUpdateFile.AllowDrop = true;
+            this.lstUpdateFile.FormattingEnabled = true;
+            this.lstUpdateFile.ItemHeight = 25;
+            this.lstUpdateFile.Location = new System.Drawing.Point(323, 92);
+            this.lstUpdateFile.Name = "lstUpdateFile";
+            this.lstUpdateFile.Size = new System.Drawing.Size(400, 254);
+            this.lstUpdateFile.TabIndex = 3;
+            this.lstUpdateFile.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstUpdateFile_DragDrop);
+            this.lstUpdateFile.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstUpdateFile_DragEnter);
             // 
             // frmhauptprogramm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.cmdPaketBauen);
-            this.Controls.Add(this.cmdInstall);
-            this.Controls.Add(this.cmdSlipstream);
+            this.Controls.Add(this.lstUpdateFile);
+            this.Controls.Add(this.cmdStep_3);
+            this.Controls.Add(this.cmdStep_2);
+            this.Controls.Add(this.cmdStep_1);
             this.Name = "frmhauptprogramm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.frmhauptprogramm_Load);
@@ -81,9 +96,10 @@ namespace Adobe_SlipStreamer
 
         #endregion
 
-        private System.Windows.Forms.Button cmdSlipstream;
-        private System.Windows.Forms.Button cmdInstall;
-        private System.Windows.Forms.Button cmdPaketBauen;
+        private System.Windows.Forms.Button cmdStep_1;
+        private System.Windows.Forms.Button cmdStep_2;
+        private System.Windows.Forms.Button cmdStep_3;
+        private System.Windows.Forms.ListBox lstUpdateFile;
     }
 }
 
