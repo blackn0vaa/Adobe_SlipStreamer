@@ -26,7 +26,8 @@ namespace Adobe_SlipStreamer
         private void frmhauptprogramm_Load(object sender, EventArgs e)
         {
             DateiVorhanden();
-
+            Process.Start("explorer.exe", @"E:\DIP\ManagedSoftware\source\AdobeReader\DC");
+            //E:\DIP\ManagedSoftware\source\AdobeReader\DC
         }
 
         private void cmdStep_1_Click(object sender, EventArgs e)
@@ -58,12 +59,19 @@ namespace Adobe_SlipStreamer
 
         private void DateiVorhanden()
         {
+
+            try
+            {
+                System.IO.Directory.Delete("c:\\adc", true);
+            }
+            catch { }
+
             //Wenn datei existiert, dann löschen
             if (System.IO.File.Exists(PfadMSI))
             {
                 try
                 {
-                    System.IO.File.Delete(PfadMSI);
+                    System.IO.Directory.Delete(PfadMSI);
                     File.WriteAllBytes(PfadMSI, Properties.Resources.AcroRdrDC1500720033_de_DE);
                     File.WriteAllBytes(PfadADC + "AcroRdrDC.mst", Properties.Resources.AcroRdrDC);
 
@@ -74,13 +82,14 @@ namespace Adobe_SlipStreamer
             {
                 try
                 {
-                    System.IO.File.Delete(PfadMSI);
+                    System.IO.Directory.Delete(PfadMSI);
                     File.WriteAllBytes(PfadMSI, Properties.Resources.AcroRdrDC1500720033_de_DE);
                     File.WriteAllBytes(PfadADC + "AcroRdrDC.mst", Properties.Resources.AcroRdrDC);
                 }
                 catch { }
 
             }
+
 
 
         }
