@@ -18,11 +18,15 @@ namespace Adobe_SlipStreamer
         public string PfadMSI = @"C:\temp\AcroRdrDC.msi";
         public string PfadADC = @"C:\adc\";
 
+  
         public frmhauptprogramm()
         {
             InitializeComponent();
+
+            this.Text = "Schlipschtreamer " + this.ProductVersion.ToString();
         }
 
+        [STAThread]
         private void frmhauptprogramm_Load(object sender, EventArgs e)
         {
             DateiVorhanden();
@@ -30,6 +34,7 @@ namespace Adobe_SlipStreamer
             //E:\DIP\ManagedSoftware\source\AdobeReader\DC
         }
 
+        [STAThread]
         private void cmdStep_1_Click(object sender, EventArgs e)
         {
             DoStep_1();
@@ -39,24 +44,38 @@ namespace Adobe_SlipStreamer
             
         }
 
+        [STAThread]
         private void cmdStep_2_Click(object sender, EventArgs e)
         {
             DoStep_2();
             timer1.Stop();
             cmdStep_2.Enabled = false;
-            Process.Start("explorer.exe", PfadADC);
+
+            //Timer2 start
+            timer2.Enabled = true;
+            timer2.Start();
+            
         }
 
+        [STAThread]
         private void cmdStep_3_Click(object sender, EventArgs e)
         {
             DoStep_3();
         }
 
+        [STAThread]
         private void timer1_Tick(object sender, EventArgs e)
         {
             cmdStep_2.Enabled = true;
         }
 
+        [STAThread]
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            Process.Start("explorer.exe", PfadADC);
+        }
+
+        [STAThread]
         private void DateiVorhanden()
         {
 
@@ -95,6 +114,7 @@ namespace Adobe_SlipStreamer
         }
 
 
+        [STAThread]
         public void DoStep_1()
         {
             //msiexec /a AcroRdrDC1500720033_de_DE.msi TARGETDIR="C:\adc" /qn
@@ -114,6 +134,7 @@ namespace Adobe_SlipStreamer
             //MessageBox.Show(lstUpdateFile.SelectedItem.ToString());
         }
 
+        [STAThread]
         public void DoStep_3()
         {
             //start /w msiexec /i "%wd%\deploy\%version%\AcroRead.msi" /qn TRANSFORMS="%wd%\deploy\%version%\AcroRead.mst"
@@ -121,6 +142,7 @@ namespace Adobe_SlipStreamer
             //Console.WriteLine("start /w msiexec /i \"C:\\adc\\AcroRdrDC.msi\" /qn TRANSFORMS=\"C:\\adc\\AcroRdrDC.mst\"");
         }
 
+        [STAThread]
         private void lstUpdateFile_DragDrop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
@@ -128,6 +150,7 @@ namespace Adobe_SlipStreamer
                 lstUpdateFile.Items.Add(file);
         }
 
+        [STAThread]
         private void lstUpdateFile_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;

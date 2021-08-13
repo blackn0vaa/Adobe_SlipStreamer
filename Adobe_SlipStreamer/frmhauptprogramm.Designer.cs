@@ -36,6 +36,7 @@ namespace Adobe_SlipStreamer
             this.lstUpdateFile = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // cmdStep_1
@@ -90,6 +91,11 @@ namespace Adobe_SlipStreamer
             this.timer1.Interval = 15000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // timer2
+            // 
+            this.timer2.Interval = 10000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // frmhauptprogramm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -116,6 +122,7 @@ namespace Adobe_SlipStreamer
         private System.Windows.Forms.ListBox lstUpdateFile;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 
