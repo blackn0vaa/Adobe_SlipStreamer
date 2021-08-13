@@ -124,6 +124,7 @@
     </Compile>
     <None Include="Resources\AcroRdrDC.mst" />
     <None Include="Resources\AcroRdrDC1500720033_de_DE.msi" />
+    <None Include="Resources\setup.ini" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

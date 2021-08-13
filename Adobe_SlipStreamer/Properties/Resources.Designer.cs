@@ -89,5 +89,16 @@ namespace Adobe_SlipStreamer.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die [Product]
+        ///CmdLine=TRANSFORMS=&quot;AcroRdrDC.mst&quot;
+        /// ähnelt.
+        /// </summary>
+        internal static string setup {
+            get {
+                return ResourceManager.GetString("setup", resourceCulture);
+            }
+        }
     }
 }
