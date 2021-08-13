@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -31,11 +32,18 @@ namespace Adobe_SlipStreamer
         private void cmdStep_1_Click(object sender, EventArgs e)
         {
             DoStep_1();
+            cmdStep_1.Enabled = false;
+            timer1.Enabled = true;
+            timer1.Start();
+            
         }
 
         private void cmdStep_2_Click(object sender, EventArgs e)
         {
             DoStep_2();
+            timer1.Stop();
+            cmdStep_2.Enabled = false;
+            Process.Start("explorer.exe", PfadADC);
         }
 
         private void cmdStep_3_Click(object sender, EventArgs e)
@@ -43,6 +51,10 @@ namespace Adobe_SlipStreamer
             DoStep_3();
         }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            cmdStep_2.Enabled = true;
+        }
 
         private void DateiVorhanden()
         {
@@ -111,5 +123,7 @@ namespace Adobe_SlipStreamer
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
         }
+
+
     }
 }

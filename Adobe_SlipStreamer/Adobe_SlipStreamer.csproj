@@ -125,5 +125,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Adobe.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Adobe1.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -29,15 +29,19 @@ namespace Adobe_SlipStreamer
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmhauptprogramm));
             this.cmdStep_1 = new System.Windows.Forms.Button();
             this.cmdStep_2 = new System.Windows.Forms.Button();
-            this.cmdStep_3 = new System.Windows.Forms.Button();
             this.lstUpdateFile = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // cmdStep_1
             // 
-            this.cmdStep_1.Location = new System.Drawing.Point(12, 30);
+            this.cmdStep_1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cmdStep_1.Location = new System.Drawing.Point(9, 80);
             this.cmdStep_1.Name = "cmdStep_1";
             this.cmdStep_1.Size = new System.Drawing.Size(223, 80);
             this.cmdStep_1.TabIndex = 0;
@@ -47,7 +51,9 @@ namespace Adobe_SlipStreamer
             // 
             // cmdStep_2
             // 
-            this.cmdStep_2.Location = new System.Drawing.Point(12, 126);
+            this.cmdStep_2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cmdStep_2.Enabled = false;
+            this.cmdStep_2.Location = new System.Drawing.Point(9, 176);
             this.cmdStep_2.Name = "cmdStep_2";
             this.cmdStep_2.Size = new System.Drawing.Size(223, 71);
             this.cmdStep_2.TabIndex = 1;
@@ -55,42 +61,51 @@ namespace Adobe_SlipStreamer
             this.cmdStep_2.UseVisualStyleBackColor = true;
             this.cmdStep_2.Click += new System.EventHandler(this.cmdStep_2_Click);
             // 
-            // cmdStep_3
-            // 
-            this.cmdStep_3.Enabled = false;
-            this.cmdStep_3.Location = new System.Drawing.Point(12, 212);
-            this.cmdStep_3.Name = "cmdStep_3";
-            this.cmdStep_3.Size = new System.Drawing.Size(223, 71);
-            this.cmdStep_3.TabIndex = 2;
-            this.cmdStep_3.Text = "Step 3";
-            this.cmdStep_3.UseVisualStyleBackColor = true;
-            this.cmdStep_3.Click += new System.EventHandler(this.cmdStep_3_Click);
-            // 
             // lstUpdateFile
             // 
             this.lstUpdateFile.AllowDrop = true;
+            this.lstUpdateFile.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lstUpdateFile.FormattingEnabled = true;
             this.lstUpdateFile.ItemHeight = 25;
-            this.lstUpdateFile.Location = new System.Drawing.Point(323, 92);
+            this.lstUpdateFile.Location = new System.Drawing.Point(243, 37);
             this.lstUpdateFile.Name = "lstUpdateFile";
-            this.lstUpdateFile.Size = new System.Drawing.Size(400, 254);
+            this.lstUpdateFile.Size = new System.Drawing.Size(510, 304);
             this.lstUpdateFile.TabIndex = 3;
             this.lstUpdateFile.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstUpdateFile_DragDrop);
             this.lstUpdateFile.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstUpdateFile_DragEnter);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(280, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(235, 25);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Drag&Drop Update Datei";
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 5000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // frmhauptprogramm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(760, 368);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lstUpdateFile);
-            this.Controls.Add(this.cmdStep_3);
             this.Controls.Add(this.cmdStep_2);
             this.Controls.Add(this.cmdStep_1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(786, 439);
             this.Name = "frmhauptprogramm";
-            this.Text = "Form1";
+            this.Text = "Schlipschtreamer";
             this.Load += new System.EventHandler(this.frmhauptprogramm_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -98,8 +113,9 @@ namespace Adobe_SlipStreamer
 
         private System.Windows.Forms.Button cmdStep_1;
         private System.Windows.Forms.Button cmdStep_2;
-        private System.Windows.Forms.Button cmdStep_3;
         private System.Windows.Forms.ListBox lstUpdateFile;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
