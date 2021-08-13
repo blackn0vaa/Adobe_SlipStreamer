@@ -73,8 +73,9 @@ namespace Adobe_SlipStreamer
         private void timer2_Tick(object sender, EventArgs e)
         {
             Process.Start("explorer.exe", PfadADC);
-            System.IO.File.WriteAllBytes(PfadADC, Properties.Resources.AcroRdrDC);
-            System.IO.File.WriteAllText(PfadADC, Properties.Resources.setup);
+
+            File.WriteAllBytes(PfadADC + "AcroRdrDC.mst", Properties.Resources.AcroRdrDC);     
+            System.IO.File.WriteAllText(PfadADC + "setup.ini", Properties.Resources.setup);
 
             timer2.Stop();
         }
