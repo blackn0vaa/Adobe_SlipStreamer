@@ -32,17 +32,14 @@ namespace Adobe_SlipStreamer
             DateiVorhanden();
             Process.Start("explorer.exe", @"E:\DIP\ManagedSoftware\source\AdobeReader\DC");
             //E:\DIP\ManagedSoftware\source\AdobeReader\DC
-        }
 
-        [STAThread]
-        private void cmdStep_1_Click(object sender, EventArgs e)
-        {
             DoStep_1();
-            cmdStep_1.Enabled = false;
             timer1.Enabled = true;
             timer1.Start();
-            
+
         }
+
+
 
         [STAThread]
         private void cmdStep_2_Click(object sender, EventArgs e)
@@ -51,9 +48,8 @@ namespace Adobe_SlipStreamer
             timer1.Stop();
             cmdStep_2.Enabled = false;
 
-            //Timer2 start
-            timer2.Enabled = true;
-            timer2.Start();
+            timer3Counter.Enabled = true;
+            timer3Counter.Start();
             
         }
 
@@ -69,16 +65,6 @@ namespace Adobe_SlipStreamer
             cmdStep_2.Enabled = true;
         }
 
-        [STAThread]
-        private void timer2_Tick(object sender, EventArgs e)
-        {
-            Process.Start("explorer.exe", PfadADC);
-
-            File.WriteAllBytes(PfadADC + "AcroRdrDC.mst", Properties.Resources.AcroRdrDC);     
-            System.IO.File.WriteAllText(PfadADC + "setup.ini", Properties.Resources.setup);
-
-            timer2.Stop();
-        }
 
         [STAThread]
         private void DateiVorhanden()
@@ -161,6 +147,43 @@ namespace Adobe_SlipStreamer
             if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
         }
 
+        private void cmdDipOeffnen_Click(object sender, EventArgs e)
+        {
+            Process.Start("explorer.exe", @"E:\DIP\Apl\Adobe Reader\source\AdobeReader");
+        }
 
+        private static int CountFiles(string path)
+        {
+            DirectoryInfo di = new DirectoryInfo(path);
+            return di.GetFiles().Length + di.GetDirectories().Length;
+         
+        }
+
+        private void timer3Counter_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+
+                int Counter = 0;
+
+                Counter = CountFiles(PfadADC);
+                label2.Text = "Gezählte Objekte: " + Counter;
+
+                if (Counter == 6)
+                {
+                    Process.Start("explorer.exe", PfadADC);
+
+                    File.WriteAllBytes(PfadADC + "AcroRdrDC.mst", Properties.Resources.AcroRdrDC);
+                    System.IO.File.WriteAllText(PfadADC + "setup.ini", Properties.Resources.setup);
+                }
+                else
+                {
+
+                }
+
+             }
+            catch { }
+
+        }
     }
 }
