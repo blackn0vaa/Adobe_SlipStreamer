@@ -73,6 +73,7 @@ namespace Adobe_SlipStreamer
         private void timer2_Tick(object sender, EventArgs e)
         {
             Process.Start("explorer.exe", PfadADC);
+            timer2.Stop();
         }
 
         [STAThread]
